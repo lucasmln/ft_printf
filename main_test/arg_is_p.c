@@ -9,25 +9,36 @@ void	arg_is_p(char **av, int ac)
 	int				add;
 	char			test;
 	int				test2 = 21;
-	int				*ptr = &test2;;
-	ft_printf(NORMAL "\nTEST 01\nft_printf : ");
-	printf("Return value : %d\n", ft_printf("%p\n", NULL));
-	printf("printf : ");
-	printf("Return value : %d\n", printf("%p\n", NULL));
+	int				*ptr = &test2;
+	int				my;
+	int				og;
 
-	ft_printf("\nTEST 02\nft_printf : ");
-	printf("Return value : %d\n", ft_printf("%p\n", &add));
-	printf("printf : ");
-	printf("Return value : %d\n", printf("%p\n", &add));
+	ft_printf(NORMAL "\nTEST 01\n");
+	if ((my = ft_printf("My " BLUE "%p\n" NORMAL, NULL)) == (og = printf("Og " BLUE "%p\n" NORMAL, NULL)))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
 
-	ft_printf("\nTEST 03\nft_printf : ");
-	printf("Return value : %d\n", ft_printf("%p\n", &test));
-	printf("printf : ");
-	printf("Return value : %d\n", printf("%p\n", &test));
 
-	ft_printf("\nTEST 04\nft_printf : ");
-	printf("Return value : %d\n", ft_printf("%p\n", &ptr));
-	printf("printf : ");
-	printf("Return value : %d\n", printf("%p\n", &ptr));
+	ft_printf(NORMAL "\nTEST 02\n");
+	if ((my = ft_printf("My " BLUE "%p\n" NORMAL, &add)) == (og = printf("Og " BLUE "%p\n" NORMAL, &add)))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+
+
+	ft_printf(NORMAL "\nTEST 03\n");
+	if ((my = ft_printf("My " BLUE "%p\n" NORMAL, &test)) == (og = printf("Og " BLUE "%p\n" NORMAL, &test)))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+
+
+	ft_printf(NORMAL "\nTEST 04\n");
+	if ((my = ft_printf("My " BLUE "%p\n" NORMAL, &ptr)) == (og = printf("Og " BLUE "%p\n" NORMAL, &ptr)))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+
 	}
 }
