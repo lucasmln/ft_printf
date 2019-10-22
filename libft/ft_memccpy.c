@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/08 11:54:32 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/11 15:14:06 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <stdlib.h>
 
-int main(int ac, char **av)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	(void)ac;
+	size_t			i;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
-	return (0);
+	s = (unsigned char*)src;
+	d = (unsigned char*)dst;
+	i = 0;
+	while (n > i && s[i] != (unsigned char)c)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	if (s[i] == (unsigned char)c)
+	{
+		d[i] = s[i];
+		return (d + i + 1);
+	}
+	return (NULL);
 }

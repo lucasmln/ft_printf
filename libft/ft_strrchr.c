@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/07 14:48:40 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/17 14:45:45 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <stdlib.h>
 
-int main(int ac, char **av)
+char	*ft_strrchr(const char *s, int c)
 {
-	(void)ac;
+	char	*pos;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
+	pos = 0;
+	while (*s)
+	{
+		if (*s == c)
+			pos = (char*)s;
+		s++;
+	}
+	if (pos)
+		return (pos);
+	if (c == '\0')
+		return ((char*)s);
 	return (0);
 }

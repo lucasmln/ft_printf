@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/07 12:05:29 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/07 12:27:07 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
-
-int main(int ac, char **av)
+int	ft_isascii(int c)
 {
-	(void)ac;
-
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
-	return (0);
+	return (c >= 0 && c <= 127 ? 1 : 0);
 }

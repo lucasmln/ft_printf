@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/07 12:27:32 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/21 15:56:58 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <stdlib.h>
 
-int main(int ac, char **av)
+char	*ft_strdup(const char *s1)
 {
-	(void)ac;
+	char	*copy;
+	int		len;
+	int		i;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
-	return (0);
+	if (!s1)
+		return (NULL);
+	len = 0;
+	while (s1[len])
+		len++;
+	copy = malloc((len + 1) * sizeof(char));
+	if (copy != NULL)
+	{
+		i = 0;
+		while (s1[i])
+		{
+			copy[i] = s1[i];
+			i++;
+		}
+		copy[i] = '\0';
+		return (copy);
+	}
+	return (NULL);
 }

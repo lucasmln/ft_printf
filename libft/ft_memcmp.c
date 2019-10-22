@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/08 15:10:56 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/09 13:15:20 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <stdlib.h>
 
-int main(int ac, char **av)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void)ac;
+	unsigned char	*str1;
+	unsigned char	*str2;
+	size_t			i;
+	int				res;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
+	str1 = (unsigned char*)s1;
+	str2 = (unsigned char*)s2;
+	i = 0;
+	while (i < n)
+	{
+		res = str1[i] - str2[i];
+		if (res != 0)
+			return (res);
+		i++;
+	}
 	return (0);
 }

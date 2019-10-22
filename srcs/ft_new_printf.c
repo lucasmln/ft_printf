@@ -226,7 +226,11 @@ t_count		ft_flag_moins(va_list aux, t_count cmp, char *s)
 
 	k = cmp.i + 2;
 	if (s[k] == '*')
-		cmp = ft_flag_star(aux, (const char *)s + cmp.i, cmp);
+	{
+		cmp.i++;
+		cmp = ft_flag_star(aux, (const char *)s, cmp);
+		cmp.space = -cmp.space;
+	}
 	else if(s[k] <= '9' && s[k] >= '0')
 	{
 		while (s[k] >= '0' && s[k] <= '9')
@@ -235,8 +239,9 @@ t_count		ft_flag_moins(va_list aux, t_count cmp, char *s)
 			cmp.space = ft_atoi((char *)&s[cmp.i + 1]);
 		if (s[k] == '.')
 			cmp = ft_flag_point(aux, cmp, s);
-			cmp.i = k;
+			cmp.i = k - 1;
 	}
+
 	return (cmp);
 }
 
@@ -406,9 +411,9 @@ int main(int argc, const char *argv[])
 {
 	argc = 4;
 
-	printf("Og return value : %d\n", printf("Og %10.7d\n", 36));
+	printf("Og return value : %d\n", printf("Og %-*.5d\n", 7, 36));
 //	printf("\n\n\n");
-	printf("My return value : %d", ft_printf("My %10.7d\n", 36));
+	printf("My return value : %d", ft_printf("My %-*.5d\n", 7, 36));
 
 return 0;
 }

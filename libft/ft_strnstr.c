@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/07 15:17:23 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/17 14:28:44 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <stdlib.h>
 
-int main(int ac, char **av)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	(void)ac;
+	size_t	i;
+	size_t	k;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
+	i = 0;
+	if (!*needle)
+		return ((char*)haystack);
+	while (haystack[i] != '\0' && i < len)
+	{
+		k = 0;
+		if (haystack[i] == needle[k])
+		{
+			while (needle[k] && haystack[i + k] == needle[k] && i + k < len)
+				k++;
+			if (needle[k] == '\0')
+				return ((char*)&haystack[i]);
+		}
+		i++;
+	}
 	return (0);
 }

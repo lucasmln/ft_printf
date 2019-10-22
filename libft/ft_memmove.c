@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_test.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/14 12:35:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:21:31 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/10/08 12:24:28 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/10/15 14:32:24 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main_test.h"
+#include <string.h>
+#include "libft.h"
 
-int main(int ac, char **av)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	(void)ac;
+	const char	*s;
+	char		*d;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
-		av[1] = NULL;
-
-	arg_is_di(av, ac);
-	arg_is_u(av, ac);
-	arg_is_c(av, ac);
-	arg_is_s(av, ac);
-	arg_is_xX(av, ac);
-	arg_is_p(av, ac);
-
-	return (0);
+	if ((!dst && !src) || !len)
+		return (dst);
+	s = src;
+	d = dst;
+	if (dst <= src)
+		return (ft_memcpy(dst, src, len));
+	while (len-- > 0)
+		d[len] = s[len];
+	return (d);
 }

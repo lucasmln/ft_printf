@@ -50,5 +50,30 @@ void	arg_is_c(char ** av, int ac)
 	else
 		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
 
+
+	if (ac > 2 && ft_strncmp(av[2], "*", 3) == 0)
+	{
+		printf(CYAN "\n___________Flag *___________\n");
+
+	ft_printf(NORMAL "\nTEST 07\n");
+	if ((my = ft_printf("My " BLUE "%*c\n" NORMAL, 5, '%')) == (og = printf("Og " BLUE "%*c\n" NORMAL, 5, '%')))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+
+
+	ft_printf(NORMAL "\nTEST 08\n");
+	if ((my = ft_printf("My " BLUE "%*c\n" NORMAL, -6, '6')) == (og = printf("Og " BLUE "%*c\n" NORMAL, -6, '6')))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+
+
+	ft_printf(NORMAL "\nTEST 09\n");
+	if ((my = ft_printf("My " BLUE "%*c\n" NORMAL, 0, ' ')) == (og = printf("Og " BLUE "%*c\n" NORMAL, 0, ' ')))
+		printf("return value " GREEN "OK\n");
+	else
+		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
+	}
 	}
 }
