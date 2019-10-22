@@ -168,13 +168,22 @@ t_count		ft_flag_star(va_list aux, const char *s, t_count cmp)
 	k = cmp.i + 2;
 	if (s[k] == '.')
 	{
-		if (ft_convertible(s[k + 1]) == 1)
+		cmp.i = k - 1;
+	//	printf("\n%d = k -1\n", k - 1);
+		cmp = ft_flag_point(aux, cmp, s);
+		k++;
+		while (s[k] >= '0' && s[k] <= '9')
 			k++;
-		else if (s[k] >= '0' && s[k] <= '9')
+	/*	if (ft_convertible(s[k + 1]) == 1)
+			k++;
+		else if (s[k + 1] >= '0' && s[k + 1] <= '9')
+		{
+			k++;
 			while (s[k] >= '0' && s[k] <= '9')
 				k++;
-		if (k > cmp.i + 2 && ft_convertible(s[k]) == 1)
-			cmp.zero = ft_atoi((char *)&s[cmp.i + 1]);
+		}*/
+	//	if (k > cmp.i + 2 && ft_convertible(s[k]) == 1)
+	//		cmp.zero = ft_atoi((char *)&s[cmp.i + 1]);
 	}
 	if (ft_convertible(s[k]) == 1/* && k > cmp.i + 2*/)
 	{
@@ -234,10 +243,13 @@ t_count		ft_flag_moins(va_list aux, t_count cmp, char *s)
 t_count		ft_flag_nb(va_list aux, t_count cmp, char *s)
 {
 	int		k;
+	int		save;
 
 	k = cmp.i + 2;
 	if (s[k] == '.')
+	{
 		cmp = ft_flag_point(aux, cmp, s);
+	}
 	else
 	{
 		while (s[k] >= '0' && s[k] <= '9')
@@ -245,10 +257,14 @@ t_count		ft_flag_nb(va_list aux, t_count cmp, char *s)
 		if (ft_convertible(s[k]) == 1)
 			cmp.space = ft_atoi(&s[cmp.i + 1]);
 		else if (s[k] == '.')
+		{
+			save = cmp.i + 1;
+			cmp.i = k - 1;
 			cmp = ft_flag_point(aux, cmp, s);
+		}
 		if (cmp.zero != 0)
-			cmp.space = ft_atoi(&s[cmp.i + 1]);
-		cmp.i = k;
+			cmp.space = ft_atoi(&s[save]);
+	//	cmp.i = k - 1;
 	}
 	return (cmp);
 }
@@ -390,9 +406,9 @@ int main(int argc, const char *argv[])
 {
 	argc = 4;
 
-	printf("return value : %d", printf("%*.d\n", 300, 36));
+	printf("Og return value : %d\n", printf("Og %10.7d\n", 36));
 //	printf("\n\n\n");
-	printf("return value : %d", ft_printf("%*.d\n", 300, 36));
+	printf("My return value : %d", ft_printf("My %10.7d\n", 36));
 
 return 0;
 }
