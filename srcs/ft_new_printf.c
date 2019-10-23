@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:42:48 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/21 19:32:29 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/23 11:46:13 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,14 +174,14 @@ t_count		ft_flag_star(va_list aux, const char *s, t_count cmp)
 		k++;
 		while (s[k] >= '0' && s[k] <= '9')
 			k++;
-	/*	if (ft_convertible(s[k + 1]) == 1)
+		if (ft_convertible(s[k + 1]) == 1)
 			k++;
 		else if (s[k + 1] >= '0' && s[k + 1] <= '9')
 		{
 			k++;
 			while (s[k] >= '0' && s[k] <= '9')
 				k++;
-		}*/
+		}
 	//	if (k > cmp.i + 2 && ft_convertible(s[k]) == 1)
 	//		cmp.zero = ft_atoi((char *)&s[cmp.i + 1]);
 	}
@@ -229,19 +229,30 @@ t_count		ft_flag_moins(va_list aux, t_count cmp, char *s)
 	{
 		cmp.i++;
 		cmp = ft_flag_star(aux, (const char *)s, cmp);
-		cmp.space = -cmp.space;
+		cmp.space = (cmp.space < 0) ? cmp.space : -cmp.space;
+	}
+	if (s[k] == '.')
+	{
+		cmp.i++;
+		cmp = ft_flag_point(aux, cmp, s);
 	}
 	else if(s[k] <= '9' && s[k] >= '0')
 	{
 		while (s[k] >= '0' && s[k] <= '9')
 			k++;
-		if (k > cmp.i + 2 && ft_convertible(s[k]) == 1)
-			cmp.space = ft_atoi((char *)&s[cmp.i + 1]);
-		if (s[k] == '.')
-			cmp = ft_flag_point(aux, cmp, s);
+		if (ft_convertible(s[k]) == 1)
+		{
+			cmp.space = -ft_atoi((char *)&s[cmp.i + 2]) -1;
 			cmp.i = k - 1;
+		printf("%d = s\n", cmp.space);
+		}
+		if (s[k] == '.')
+		{
+			cmp.space = -ft_atoi((char*)&s[cmp.i + 2]);
+			cmp.i = k - 1;
+			cmp = ft_flag_point(aux, cmp, s);
+		}
 	}
-
 	return (cmp);
 }
 
@@ -253,6 +264,7 @@ t_count		ft_flag_nb(va_list aux, t_count cmp, char *s)
 	k = cmp.i + 2;
 	if (s[k] == '.')
 	{
+		cmp.i++;
 		cmp = ft_flag_point(aux, cmp, s);
 	}
 	else
@@ -296,9 +308,18 @@ t_count		ft_flags(va_list aux, t_count cmp, char c, char *s)
 
 t_count		ft_print_front_flag(t_count cmp, int neg)
 {
+	int		a;
+
 	if (cmp.space > 0 && neg == 1)
 		while (cmp.space-- > 0)
 			write(1, " ", 1);
+	if (cmp.zero > 0 && cmp.str[0] == '-')
+	{
+		ft_putchar_fd('-', 1);
+		cmp.zero++;
+		a = ft_strlcpy(cmp.str, &cmp.str[1], ft_strlen(cmp.str));
+		cmp.len++;
+	}
 	if (cmp.zero > 0)
 		while (cmp.zero-- > 0)
 			write(1, "0", 1);
@@ -316,25 +337,23 @@ t_count		ft_print_back_flag(t_count cmp, int neg)
 t_count		ft_print_arg(t_count cmp)
 {
 	int		neg;
-
+	printf("space = %d, zero = %d, len = %lu, s[0] = %c\n", cmp.space, cmp.zero, ft_strlen(cmp.str), cmp.str[0]);
 	if ((cmp.zero -= ft_strlen(cmp.str)) < 0)
 		cmp.zero = 0;
+	printf("space = %d, zero = %d, len = %lu, s[0] = %c\n", cmp.space, cmp.zero, ft_strlen(cmp.str), cmp.str[0]);
 	neg = (cmp.space > 0) ? 1 : -1;
 	cmp.space = (neg == -1) ? -cmp.space : cmp.space;
-	cmp.space -= ft_strlen(cmp.str);
-	cmp.space -= cmp.zero;
+	cmp.space = cmp.space - ft_strlen(cmp.str) - cmp.zero;
 	cmp.space = (cmp.space > 0) ? cmp.space : 0;
+	cmp.space = (cmp.str[0] == '-' && cmp.space > 0) ? cmp.space - 1: cmp.space;
+	cmp.space = (cmp.str[0] == '-' && cmp.space < 0) ? cmp.space + 1: cmp.space;
 	cmp.len = cmp.len + ft_strlen(cmp.str) + cmp.space + cmp.zero;
+	printf("space = %d, s[0] = %c\n", cmp.space, cmp.str[0]);
 	cmp = ft_print_front_flag(cmp, neg);
-//	while (cmp.space-- > 0)
-//		ft_putchar_fd(' ', 1);
-//	while (cmp.zero > 0)
-//		ft_putchar_fd('0', 1);
 	ft_putstr_fd(cmp.str, 1);
 	cmp = ft_print_back_flag(cmp, neg);
 	cmp.zero = 0;
 	cmp.space = 0;
-//	free(cmp.str);
 	return (cmp);
 }
 
@@ -411,9 +430,9 @@ int main(int argc, const char *argv[])
 {
 	argc = 4;
 
-	printf("Og return value : %d\n", printf("Og %-*.5d\n", 7, 36));
+	printf("Og return value : %d\n", printf("Og %-9.5d\n", -7));
 //	printf("\n\n\n");
-	printf("My return value : %d", ft_printf("My %-*.5d\n", 7, 36));
+	printf("My return value : %d", ft_printf("My %-9.5d\n", -7));
 
 return 0;
 }
