@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:49:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/23 18:40:09 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/25 18:21:32 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_count		ft_arg_str(va_list aux, t_count cmp)
 	if (!temp || temp == NULL)
 	{
 		if ((cmp.str = malloc(sizeof(char) * 7)) != NULL)
-			cmp.str = "(null)";
+			i = ft_strlcpy(cmp.str, "(null)", 7);
 		else
 			cmp.str = NULL;
 		return (cmp);
