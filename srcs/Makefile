@@ -1,9 +1,16 @@
 SRCS = ../libft/ft_atoi.c ../libft/ft_itoa.c ../libft/ft_putnbr_fd.c \
 	  ../libft/ft_putchar_fd.c ../libft/ft_putstr_fd.c ../libft/ft_strdup.c ../libft/ft_strlen.c \
 	  ../libft/ft_strncmp.c ../libft/ft_strlcpy.c \
-	  ft_printf.c annexe.c arg.c arg2.c flags.c test.c
+	  ft_printf.c annexe.c arg.c arg2.c flags.c \
+	  test.c \
+	 # essaie.c \#
 
 FLAGS = -Wall -Werror -Wextra
 
+SANITIZE = -g3 -fsanitize=address
+
 all:
-	gcc $(FLAG) $(SRCS)
+	gcc $(FLAGS) $(SRCS)
+
+sanitize:
+	gcc $(SANITIZE) $(SRCS)

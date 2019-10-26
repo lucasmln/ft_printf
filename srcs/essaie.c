@@ -6,7 +6,7 @@
 /*   By: abourin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 10:29:29 by abourin           #+#    #+#             */
-/*   Updated: 2019/10/25 19:22:58 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/26 12:14:14 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,22 +74,22 @@ int main(void)
 	ft_printf("%010x\n", 0);
 	ft_printf("%010x\n", 20);
 	ft_printf("%010x\n", -20);
- //	ft_printf("%10x\n", 20);
-//	ft_printf("%10.2x\n", -20);
-//	ft_printf("%-10x\n", 50);
-//	ft_printf("%-15x\n", 0);
-//	ft_printf("%.1x\n", 500);
-//	ft_printf("%*.*x\n", 50, 10, 2);
-//	ft_printf("%x\n", -1);
+	ft_printf("%10x\n", 20);
+	ft_printf("%10.2x\n", -20);
+	ft_printf("%-10x\n", 50);
+	ft_printf("%-15x\n", 0);
+	ft_printf("%.1x\n", 500);
+	ft_printf("%*.*x\n", 50, 10, 2);
+	ft_printf("%x\n", -1);
 //	ft_printf("%");
-//	ft_printf("%40.50d\n", 50);
-  //  ft_printf("%d\n", -589);
- //   ft_printf("%-4d\n", -2464);
- //   ft_printf("%.5d\n", -2372);
-//	ft_printf("%p\n", NULL);
-//	ft_printf("%015p\n", NULL);
-//	ft_printf("%15p\n", NULL);
-//	ft_printf("%-15p\n", NULL);
+	ft_printf("%40.50d\n", 50);
+	ft_printf("%d\n", -589);
+	ft_printf("%-4d\n", -2464);
+	ft_printf("%.5d\n", -2372);
+	ft_printf("%p\n", NULL);
+	ft_printf("%015p\n", NULL);
+	ft_printf("%15p\n", NULL);
+	ft_printf("%-15p\n", NULL);
  /*   ft_printf("ret = %d\n", ft_printf("%%p::[%010d]\n", -8473));
     ft_printf("ret = %d\n", ft_printf("%%p::[%10d]\n", -8473));
     ft_printf("ret = %d\n", ft_printf("%%p::[%.5d]\n", -8473));
