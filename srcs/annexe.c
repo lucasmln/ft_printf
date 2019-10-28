@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:58:09 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/25 18:42:59 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/28 14:59:11 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_count		ft_init_count(t_count init, int k)
 		init.len = 0;
 		init.str = NULL;
 	}
+	init.zero = -4294967295;;
 	init.space = 0;
-	init.zero = -4294967295;
+	init.check = 0;
 	return (init);
 }

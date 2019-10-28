@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:50:32 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/23 17:11:26 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/28 17:01:25 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ t_count		ft_is_x(t_count cmp, long long nb, char c)
 t_count		ft_arg_xp(va_list aux, t_count cmp, char c)
 {
 	long long	nb;
-	int		size;
+	int			size;
 
 	nb = va_arg(aux, long long);
+	printf("%lld test\n", nb);
 	size = ft_strlen_nb(nb, 16);
 	size = (c == 'p') ? size + 2 : size;
 	if (!(cmp.str = malloc(sizeof(char) * (size + 1))))

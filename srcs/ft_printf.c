@@ -6,14 +6,14 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:56:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/25 19:05:26 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/28 16:45:41 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/prototype.h"
 #include "../libft/libft.h"
 
-t_count		ft_print_front_flag(t_count cmp, int neg)
+t_count		ft_print_front_flag(t_count cmp, int neg, char *s)
 {
 	int		a;
 
@@ -23,11 +23,10 @@ t_count		ft_print_front_flag(t_count cmp, int neg)
 	if (cmp.zero > 0 && cmp.str[0] == '-')
 	{
 		ft_putchar_fd('-', 1);
-		cmp.zero++;
 		a = ft_strlcpy(cmp.str, &cmp.str[1], ft_strlen(cmp.str));
-		cmp.len++;
+	//	cmp.len++;
 	}
-	if (cmp.zero > 0 && cmp.str[cmp.i] != 's')
+	if (s[cmp.i] != 's' || (s[cmp.i] == 's' && cmp.check == 1))
 		while (cmp.zero-- > 0)
 			write(1, "0", 1);
 	return (cmp);
@@ -41,32 +40,52 @@ t_count		ft_print_back_flag(t_count cmp, int neg)
 	return (cmp);
 }
 
+t_count			ft_check_null_str(t_count cmp, char *s)
+{
+	if ((s[cmp.i] == 'x' || s[cmp.i] == 'X' || s[cmp.i] == 'd' ||
+	s[cmp.i] == 'u') && (cmp.zero == -4294967295 || cmp.zero == 0) &&
+	ft_strncmp(cmp.str, "0", ft_strlen(cmp.str)) == 0 &&
+	(s[cmp.i - 1] == '.' || (s[cmp.i - 2] == '.' && s[cmp.i - 1] == '0')))
+	{
+		cmp.str[0] = '\0';
+		cmp.zero = 0;
+	}
+		return (cmp);
+}
+
+t_count		ft_reduc_str(t_count cmp, char *s)
+{
+	if (s[cmp.i] == 's' && cmp.zero == 0 && cmp.check == 1)
+		return (cmp);
+	if (s[cmp.i] == 's' && (long)ft_strlen(cmp.str) > cmp.zero && cmp.zero != -4294967295)
+		cmp.str[cmp.zero] = '\0';
+	return (cmp);
+}
+
 t_count		ft_print_arg(t_count cmp, char *s)
 {
 	int					neg;
 	const long			umax = -4294967295;
 
-	if (cmp.zero == umax && ft_strncmp(cmp.str, "0", ft_strlen(cmp.str)) == 0)
-	{
-		cmp.str[0] = '\0';
-		cmp.zero = 0;
-	}
-	cmp.zero = (s[cmp.i] == 's') ? cmp.zero : cmp.zero - ft_strlen(cmp.str);
+	cmp = (s[cmp.i] == 's') ? ft_reduc_str(cmp, s) : ft_check_null_str(cmp, s);
+	cmp.zero = (cmp.str[0] == '-' && (size_t)cmp.zero >= ft_strlen(cmp.str) &&
+				cmp.check == 2) ? cmp.zero + 1 : cmp.zero;
+	cmp.zero = (s[cmp.i] == 's' && cmp.check == 2) ? cmp.zero : cmp.zero - ft_strlen(cmp.str);
 	if (s[cmp.i] != 's' && (cmp.zero < 0 || cmp.zero == umax))
 		cmp.zero = 0;
-	if (s[cmp.i] == 's' && cmp.zero != umax)
+	if (s[cmp.i] == 's' && cmp.zero != umax && cmp.check != 1)
 	{
-		cmp.str[cmp.zero] = (ft_strlen(cmp.str) > cmp.zero ) ? '\0' : cmp.str[cmp.zero];
+		cmp.zero = ft_strlcpy(cmp.str, cmp.str, cmp.zero + 1);
 		cmp.zero = 0;
 	}
 	neg = (cmp.space > 0) ? 1 : -1;
 	cmp.space = (neg == -1) ? -cmp.space : cmp.space;
+	cmp.space = (s[cmp.i] == 's' && cmp.zero == umax) ? cmp.space + 1 : cmp.space;
 	cmp.space = cmp.space - ft_strlen(cmp.str) - cmp.zero;
 	cmp.space = (cmp.space > 0) ? cmp.space : 0;
-	cmp.space = (cmp.str[0] == '-' && cmp.space > 0) ? cmp.space - 1: cmp.space;
-	cmp.space = (cmp.str[0] == '-' && cmp.space < 0) ? cmp.space + 1: cmp.space;
 	cmp.len = cmp.len + ft_strlen(cmp.str) + cmp.space + cmp.zero;
-	cmp = ft_print_front_flag(cmp, neg);
+	cmp.len = (s[cmp.i] == 's' && cmp.check == 2) ? cmp.len - 1 : cmp.len;
+	cmp = ft_print_front_flag(cmp, neg, s);
 	ft_putstr_fd(cmp.str, 1);
 	cmp = ft_print_back_flag(cmp, neg);
 	cmp.zero = -4294967295;
@@ -76,7 +95,7 @@ t_count		ft_print_arg(t_count cmp, char *s)
 
 t_count		ft_check(va_list aux, const char *s, t_count cmp)
 {
-	cmp = ft_flags(aux, cmp, s[cmp.i + 1], (char *)s);
+	cmp = ft_flags(aux, cmp, s[cmp.i + 1], (char *)s);	
 	if (s[cmp.i + 1] == 'd' || s[cmp.i + 1] == 'i')
 		cmp = ft_arg_int(aux, cmp);
 	else if (s[cmp.i + 1] == 'u')
@@ -89,7 +108,8 @@ t_count		ft_check(va_list aux, const char *s, t_count cmp)
 		cmp = ft_arg_xp(aux, cmp, s[cmp.i + 1]);
 	if (cmp.str != NULL)
 		cmp.i++;
-	cmp = ft_print_arg(cmp, (char*)s);
+	if (cmp.str)
+		cmp = ft_print_arg(cmp, (char*)s);
 	cmp.str = NULL;
 	return (cmp);
 }

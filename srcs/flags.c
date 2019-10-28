@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:51:49 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/25 18:58:22 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/28 15:55:48 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_count		ft_flag_star(va_list aux, const char *s, t_count cmp)
 	if (s[k] == '.')
 	{
 		cmp.i = k - 1;
+		cmp.space = va_arg(aux, int);
 		cmp = ft_flag_point(aux, cmp, s);
 		k++;
 		while (s[k] >= '0' && s[k] <= '9')
@@ -34,7 +35,7 @@ t_count		ft_flag_star(va_list aux, const char *s, t_count cmp)
 				k++;
 		}
 	}
-	if (ft_convertible(s[k]) == 1)
+	else if (ft_convertible(s[k]) == 1)
 	{
 		cmp.space = va_arg(aux, int);
 		cmp.i = k - 1;
@@ -48,6 +49,7 @@ t_count		ft_flag_point(va_list aux, t_count cmp, const char *s)
 	int		k;
 
 	k = cmp.i + 2;
+	cmp.check = (s[k - 1] == '0') ? 1 : 2;
 	if (s[k] == '*')
 	{
 		if (ft_convertible(s[k + 1]) == 1)
@@ -65,7 +67,7 @@ t_count		ft_flag_point(va_list aux, t_count cmp, const char *s)
 			cmp.zero = ft_atoi((char *)&s[cmp.i]);
 		cmp.i = k - 1;
 	}
-	cmp.zero = (cmp.zero == 0) ? -4294967295 : cmp.zero;
+//	cmp.zero = (cmp.zero == 0) ? -4294967295 : cmp.zero;
 	return (cmp);
 }
 
@@ -112,6 +114,7 @@ t_count		ft_flag_nb(va_list aux, t_count cmp, char *s)
 	if (s[k + 1] == '.')
 	{
 		cmp.i++;
+		cmp.space = ft_atoi(&s[k]);
 		cmp = ft_flag_point(aux, cmp, s);
 	}
 	else
@@ -120,26 +123,24 @@ t_count		ft_flag_nb(va_list aux, t_count cmp, char *s)
 			k++;
 		if (ft_convertible(s[k]) == 1)
 		{
-			cmp.zero = ft_atoi(&s[cmp.i + 1]);
+			cmp.space = ft_atoi(&s[cmp.i + 1]);
 			cmp.i = k - 1;
 		}
 		else if (s[k] == '.')
 		{
+			cmp.space = ft_atoi(&s[cmp.i + 1]);
 			save = cmp.i + 1;
 			cmp.i = k - 1;
 			cmp = ft_flag_point(aux, cmp, s);
 		}
-		if (cmp.zero != 0 && cmp.zero != -4294967295)
-			cmp.zero = ft_atoi(&s[save]);
+	//	if (cmp.zero != 0 && cmp.zero != -4294967295)
+	//		cmp.zero = ft_atoi(&s[save]);
 	}
 	return (cmp);
 }
 
 t_count		ft_flags(va_list aux, t_count cmp, char c, char *s)
 {
-	t_count		save;
-
-	save = cmp;
 	if (c == '*')
 		cmp = ft_flag_star(aux, s, cmp);
 	else if (c == '.' || c == '0')

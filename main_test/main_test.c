@@ -16,8 +16,11 @@ int main(int ac, char **av)
 {
 	(void)ac;
 
-	if (ft_strncmp(av[1], "-all", 5) == 0)
+
+	if (!av[1] || ft_strncmp(av[1], "-all", 5) == 0)
 		av[1] = NULL;
+	if (!av[2])
+		av[2] = NULL;
 
 	arg_is_di(av, ac);
 	arg_is_u(av, ac);
