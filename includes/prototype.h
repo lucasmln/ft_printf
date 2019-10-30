@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:29:24 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 15:51:52 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:27:28 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_count			ft_arg_int(va_list aux, t_count cmp);
 t_count			ft_unsigned_int(va_list aux, t_count cmp);
 t_count			ft_arg_char(va_list aux, t_count cmp);
 t_count			ft_arg_str(va_list aux, t_count cmp);
+t_count		ft_arg_percent(va_list au, t_count cmp);
 //arg2.c
 t_count			ft_arg_xp(va_list aux, t_count cmp, char c);
 t_count			ft_is_p(t_count cmp, long long nb);

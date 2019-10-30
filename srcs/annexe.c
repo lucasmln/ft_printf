@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:58:09 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 12:58:13 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:28:12 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			ft_strlen_nb(long nb, int base)
 int			ft_convertible(char c)
 {
 	if (c == 'd' || c == 'i' || c == 'c' || c == 's' || c == 'p' || c == 'x' ||
-	c == 'X' || c == 'u')
+	c == 'X' || c == 'u' || c == '%')
 		return (1);
 	return (0);
 }

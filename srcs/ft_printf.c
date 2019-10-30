@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:56:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 16:02:14 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:50:07 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_count		ft_print_front_flag(t_count cmp, int neg, char *s)
 	{
 		ft_putchar_fd('-', 1);
 		a = ft_strlcpy(cmp.str, &cmp.str[1], ft_strlen(cmp.str));
-	//	cmp.len++;
 	}
 	if (s[cmp.i] != 's' || (s[cmp.i] == 's' && cmp.check == 1))
 		while (cmp.zero-- > 0)
@@ -98,12 +97,6 @@ t_count		ft_print_arg(t_count cmp, char *s)
 	cmp.zero = (s[cmp.i] == 's' && cmp.zero != 0 && cmp.check != 1) ?
 	ft_strlcpy(cmp.str, cmp.str, cmp.zero + 1) - ft_strlcpy(cmp.str, cmp.str,
 	cmp.zero + 1) : cmp.zero; 
-
-//	if (s[cmp.i] == 's' && cmp.zero != 0 && cmp.check != 1)
-//	{
-//		cmp.zero = ft_strlcpy(cmp.str, cmp.str, cmp.zero + 1);
-//		cmp.zero = 0;
-//	}
 	neg = (cmp.space > 0) ? 1 : -1;
 	cmp.space = (neg == -1) ? -cmp.space : cmp.space;
 	cmp.space = (s[cmp.i] == 's' && cmp.zero == umax) ? cmp.space + 1 : cmp.space;
@@ -121,6 +114,9 @@ t_count		ft_print_arg(t_count cmp, char *s)
 
 t_count		ft_check(va_list aux, const char *s, t_count cmp)
 {
+	int		save;
+
+	save = cmp.i;
 	cmp = ft_flags(aux, cmp, s[cmp.i + 1], (char *)s);	
 	if (s[cmp.i + 1] == 'd' || s[cmp.i + 1] == 'i')
 		cmp = ft_arg_int(aux, cmp);
@@ -132,10 +128,16 @@ t_count		ft_check(va_list aux, const char *s, t_count cmp)
 		cmp = ft_arg_str(aux, cmp);
 	else if (s[cmp.i + 1] == 'x' || s[cmp.i + 1] == 'X' || s[cmp.i + 1] == 'p')
 		cmp = ft_arg_xp(aux, cmp, s[cmp.i + 1]);
+	else if (s[cmp.i + 1] == '%')
+		cmp = ft_arg_percent(aux, cmp);
 	if (cmp.str != NULL)
 		cmp.i++;
-	if (cmp.str)
-		cmp = ft_print_arg(cmp, (char*)s);
+	if (cmp.str == NULL)
+	{
+		cmp.i= save;
+		return (cmp);
+	}
+	cmp = ft_print_arg(cmp, (char*)s);
 	cmp.str = NULL;
 	return (cmp);
 }
@@ -158,8 +160,8 @@ int		ft_printf(const char *str, ...)
 		if (str[cmp.i] == '%')
 		{
 			cmp = ft_check(aux, str, cmp);
-			if (cmp.i == k)
-				ft_putchar_fd('%', 1);
+			//if (cmp.i == k)
+			//	ft_putchar_fd('%', 1);
 		}
 		else
 		{

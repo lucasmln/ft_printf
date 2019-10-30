@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:49:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 11:38:35 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 16:32:06 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,3 +76,14 @@ t_count		ft_arg_str(va_list aux, t_count cmp)
 	return (cmp);
 }
 
+t_count		ft_arg_percent(va_list au, t_count cmp)
+{
+	if (!(cmp.str = malloc(sizeof(char) * 2)))
+	{
+		cmp.str = NULL;
+		return (cmp);
+	}
+	cmp.str[0] = '%';
+	cmp.str[1] = '\0';
+	return (cmp);
+}

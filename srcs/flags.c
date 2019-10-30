@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:51:49 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 15:22:26 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 19:47:47 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,49 @@ t_count		ft_flag_star(va_list aux, const char *s, t_count cmp)
 	return (cmp);
 }
 
+t_count		ft_switch_flag(va_list aux, t_count cmp, const char *s)
+{
+	cmp.space = cmp.zero;
+	cmp = ft_flag_point(aux, cmp, s);
+	return (cmp);
+}
+
+t_count		ft_flag_zero(va_list aux, t_count cmp, const char *s)
+{
+	int		k;
+
+	k = cmp.i + 2;
+	cmp.check = 1;
+	cmp.i++;
+	cmp = (s[k] == '.' && s[k - 1] == '0') ? ft_flag_point(aux, cmp, s) : cmp;
+	if (s[k] == '*')
+	{
+		if (ft_convertible(s[k + 1]) == 1)
+		{
+			cmp.zero = va_arg(aux, int);
+			cmp.i = k;
+		}
+	}
+	else if ((s[k] >= '0' && s[k] <= '9') || ft_convertible(s[k]) == 1)
+	{
+		cmp.i = (s[k] >= '0' && s[k] <= '9') ? k : cmp.i;
+		while (s[k] >= '0' && s[k] <= '9')
+			k++;
+		if ((ft_convertible(s[k]) == 1 && s[k]) || s[k] == '.')
+			cmp.zero = ft_atoi((char *)&s[cmp.i]);
+		cmp.i = k - 1;
+		cmp = (s[k] == '.') ? ft_switch_flag(aux, cmp, s) : cmp;
+	}
+	return (cmp);
+
+}
+
 t_count		ft_flag_point(va_list aux, t_count cmp, const char *s)
 {
 	int		k;
 
 	k = cmp.i + 2;
-	cmp.check = (s[k - 1] == '0') ? 1 : 2;
+	cmp.check = 2;
 	cmp.i++;
 	cmp = (s[k] == '.' && s[k - 1] == '0') ? ft_flag_point(aux, cmp, s) : cmp;
 	if (s[k] == '*')
