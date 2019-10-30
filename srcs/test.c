@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 16:13:23 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/28 12:07:30 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 15:57:05 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ int		main(int ac, const char *av[])
 {
 //	unsigned int i = 21546531;
 	ac = 4;
-
 	av = 0;
+	int		ret;
 
-	printf("Og%5.3s\n", "ok");
-	ft_printf("My%5.3s\n", "ok");
-	return (0);
+	ret = 16;
+
+	ft_printf("%010p\n", &ret);
+	printf("%010p\n", &ret);
+return (0);
 }
