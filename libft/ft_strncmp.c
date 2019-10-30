@@ -6,12 +6,12 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:28:13 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/17 11:32:30 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/26 12:05:08 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
+#include "libft.h"
+#include <stdio.h>
 int		ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t			i;
@@ -27,3 +27,4 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (0);
 }
+

@@ -52,7 +52,7 @@ void	arg_is_u(char ** av, int ac)
 	else
 		printf(RED "return value erreur : my = %d, OG = %d\n" NORMAL, my, og);
 
-	if (ac > 2 && ft_strncmp(av[2], "*", 3) == 0)
+	if (ac < 2 || ft_strncmp(av[2], "*", 3) == 0 || ft_strncmp(av[2], "-all", 5) == 0)
 	{
 		printf(CYAN "\n___________Flag *___________\n");
 	
