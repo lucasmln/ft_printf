@@ -6,7 +6,11 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:56:02 by lmoulin           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/10/30 16:02:14 by lmoulin          ###   ########.fr       */
+=======
+/*   Updated: 2019/10/28 16:45:41 by lmoulin          ###   ########.fr       */
+>>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +95,7 @@ t_count		ft_print_arg(t_count cmp, char *s)
 	cmp = (s[cmp.i] == 's') ? ft_reduc_str(cmp, s) : ft_check_null_str(cmp, s);
 	cmp.zero = (cmp.str[0] == '-' && (size_t)cmp.zero >= ft_strlen(cmp.str) &&
 				cmp.check == 2) ? cmp.zero + 1 : cmp.zero;
+<<<<<<< HEAD
 	cmp.zero = (s[cmp.i] == 's' && cmp.check == 2 && cmp.zero == 0) ? cmp.zero
 			: cmp.zero - ft_strlen(cmp.str);
 	cmp.zero = (cmp.zero < 0) ? 0 : cmp.zero;
@@ -104,6 +109,16 @@ t_count		ft_print_arg(t_count cmp, char *s)
 //		cmp.zero = ft_strlcpy(cmp.str, cmp.str, cmp.zero + 1);
 //		cmp.zero = 0;
 //	}
+=======
+	cmp.zero = (s[cmp.i] == 's' && cmp.check == 2) ? cmp.zero : cmp.zero - ft_strlen(cmp.str);
+	if (s[cmp.i] != 's' && (cmp.zero < 0 || cmp.zero == umax))
+		cmp.zero = 0;
+	if (s[cmp.i] == 's' && cmp.zero != umax && cmp.check != 1)
+	{
+		cmp.zero = ft_strlcpy(cmp.str, cmp.str, cmp.zero + 1);
+		cmp.zero = 0;
+	}
+>>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 	neg = (cmp.space > 0) ? 1 : -1;
 	cmp.space = (neg == -1) ? -cmp.space : cmp.space;
 	cmp.space = (s[cmp.i] == 's' && cmp.zero == umax) ? cmp.space + 1 : cmp.space;
