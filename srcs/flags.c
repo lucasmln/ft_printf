@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:51:49 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 19:47:47 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 20:02:04 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_count		ft_flag_zero(va_list aux, t_count cmp, const char *s)
 	k = cmp.i + 2;
 	cmp.check = 1;
 	cmp.i++;
-	cmp = (s[k] == '.' && s[k - 1] == '0') ? ft_flag_point(aux, cmp, s) : cmp;
+	cmp = (s[k] == '.') ? ft_flag_point(aux, cmp, s) : cmp;
 	if (s[k] == '*')
 	{
 		if (ft_convertible(s[k + 1]) == 1)
@@ -181,8 +181,10 @@ t_count		ft_flags(va_list aux, t_count cmp, char c, char *s)
 {
 	if (c == '*')
 		cmp = ft_flag_star(aux, s, cmp);
-	else if (c == '.' || c == '0')
+	else if (c == '.')
 		cmp = ft_flag_point(aux, cmp, s);
+	else if (c == '0')
+		cmp = ft_flag_zero(aux, cmp, s);
 	else if (c == '-')
 		cmp = ft_flag_moins(aux, cmp, s);
 	else if (c >= '0' && c <= '9')

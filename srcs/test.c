@@ -6,15 +6,17 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/30 16:37:56 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 19:43:36 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/30 19:58:01 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include "../libft/libft.h"
+#include "../includes/prototype.h"
+
 
 int main()
 {
-	printf("%.5*06d\n", 10, 8);
-//printf("%.*04d\n", 5, 42);
+	ft_printf("%010.1d\n", -8425);
 	return 0;
 }
