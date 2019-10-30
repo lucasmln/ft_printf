@@ -6,11 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:29:24 by lmoulin           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2019/10/30 15:51:52 by lmoulin          ###   ########.fr       */
-=======
-/*   Updated: 2019/10/28 14:59:26 by lmoulin          ###   ########.fr       */
->>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +15,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
-<<<<<<< HEAD
 # include <stdio.h>
-=======
-#include <stdio.h>
->>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 
 typedef struct	s_count
 {
@@ -59,10 +51,7 @@ t_count			ft_print_back_flag(t_count cmp, int neg);
 t_count			ft_print_arg(t_count cmp, char *s);
 t_count			ft_check(va_list aux, const char *s, t_count cmp);
 int				ft_printf(const char *str, ...);
-<<<<<<< HEAD
 t_count			ft_except_p(t_count cmp, char *s);
 
-=======
->>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 
 #endif

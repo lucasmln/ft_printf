@@ -6,11 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:50:32 by lmoulin           #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2019/10/30 15:54:31 by lmoulin          ###   ########.fr       */
-=======
-/*   Updated: 2019/10/28 17:01:25 by lmoulin          ###   ########.fr       */
->>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +57,7 @@ t_count		ft_arg_xp(va_list aux, t_count cmp, char c)
 	long long	nb;
 	int			size;
 
-<<<<<<< HEAD
 	nb = (c == 'p') ? va_arg(aux, long long) : va_arg(aux, unsigned int);
-=======
-	nb = va_arg(aux, long long);
-	printf("%lld test\n", nb);
->>>>>>> 50fb279ea3d2e965385cd55fa729ac62896097db
 	size = ft_strlen_nb(nb, 16);
 	size = (c == 'p') ? size + 2 : size;
 	if (!(cmp.str = malloc(sizeof(char) * (size + 1))))
