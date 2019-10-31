@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:49:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/30 16:32:06 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/10/31 15:06:49 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_count		ft_arg_char(va_list aux, t_count cmp)
 	}
 	cmp.str = NULL;
 	return (cmp);
-	
 }
 
 t_count		ft_arg_str(va_list aux, t_count cmp)

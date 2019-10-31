@@ -6,7 +6,7 @@
 #    By: jgrandne <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/17 14:34:55 by jgrandne          #+#    #+#              #
-#    Updated: 2019/10/25 15:32:04 by lmoulin          ###   ########.fr        #
+#    Updated: 2019/10/31 16:20:18 by lmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ INC_PATH = ./includes
 OBJ_PATH = ./obj
 OBJLIB_PATH = ./obj
 
-SRC_NAME =	ft_printf.c annexe.c arg.c arg2.c flags.c
+SRC_NAME =	ft_printf.c annexe.c arg.c arg2.c flags.c \
+			flags_2.c exception.c
 #ft_apply_flags.c\
 			ft_check.c\
 			ft_dispatcher.c\
