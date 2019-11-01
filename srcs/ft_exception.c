@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exception.c                                        :+:      :+:    :+:   */
+/*   ft_exception.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 16:09:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/31 16:21:12 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/11/01 14:47:49 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/11/01 14:47:51 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/prototype.h"
+#include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
 t_count			ft_check_null_str(t_count cmp, char *s)

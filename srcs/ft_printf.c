@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 11:56:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/31 16:18:37 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/11/01 14:48:15 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/11/01 14:48:22 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/prototype.h"
+#include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
 t_count			ft_print_front_flag(t_count cmp, int neg, char *s)

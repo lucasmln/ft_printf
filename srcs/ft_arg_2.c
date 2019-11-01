@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg2.c                                             :+:      :+:    :+:   */
+/*   ft_arg_2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 11:50:32 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/31 15:08:19 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/11/01 14:47:39 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/11/01 14:47:42 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/prototype.h"
+#include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
 t_count		ft_is_p(t_count cmp, long long nb)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jgrandne <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/17 14:34:55 by jgrandne          #+#    #+#              #
-#    Updated: 2019/10/31 16:20:18 by lmoulin          ###   ########.fr        #
+#    Created: 2019/11/01 14:39:55 by lmoulin           #+#    #+#              #
+#    Updated: 2019/11/01 14:50:42 by lmoulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,40 +24,16 @@ SRC_PATH = ./srcs
 LIB_PATH = ./libft
 INC_PATH = ./includes
 OBJ_PATH = ./obj
-OBJLIB_PATH = ./obj
+OBJLIB_PATH = ./libft
 
-SRC_NAME =	ft_printf.c annexe.c arg.c arg2.c flags.c \
-			flags_2.c exception.c
-#ft_apply_flags.c\
-			ft_check.c\
-			ft_dispatcher.c\
-			ft_display_char.c\
-			ft_display_numb.c\
-			ft_flag_s.c\
-			ft_flag_c.c\
-			ft_flag_d.c\
-			ft_flag_p_undefined.c\
-			ft_flag_wu_wo.c\
-			ft_flag_u_o.c\
-			ft_flag_x.c\
-			ft_handler.c\
-			ft_printf.c\
-			ft_buf.c\
-			ft_transform_wchar.c
+SRC_NAME =	ft_printf.c ft_annexe.c ft_arg.c ft_arg_2.c ft_flags.c \
+			ft_flags_2.c ft_exception.c
 
 LIB_NAME = 	ft_atoi.c ft_substr.c ft_strlcpy.c \
 			ft_putchar_fd.c ft_strdup.c \
 			ft_putstr_fd.c ft_strncmp.c \
 			ft_strlen.c \
 			ft_itoa.c
-		#	ft_isdigit.c\
-			ft_itoa_base.c\
-			ft_strlen.c\
-			ft_strsub.c\
-			ft_wcharlen.c\
-			ft_strlwr.c\
-			ft_wstrlen.c\
-			ft_wstrsub.c
 
 INC_NAME = ft_printf.h
 
@@ -72,8 +48,9 @@ OBJLIB = $(addprefix $(OBJLIB_PATH)/,$(OBJLIB_NAME))
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB)
-	@ar rc $(NAME) $(OBJ) $(OBJLIB)
+$(NAME): $(OBJ)# $(OBJLIB)
+	@make -C libft
+	@ar rc $(NAME) $(OBJ) $(OBJLIB) libft/libft.a
 	@ranlib $(NAME)
 	@echo "__, ___      __, __, _ _, _ ___ __,"
 	@echo "|_   |       |_) |_) | |\ |  |  |_ "
@@ -90,10 +67,12 @@ $(OBJLIB_PATH)/%.o: $(LIB_PATH)/%.c
 	@$(CC) -o $@ -c $<
 
 clean:
+	@make clean -C libft
 	@rm -rf $(OBJ) $(OBJLIB)
 	@echo "\033[1;34mft_printf\t\033[1;33mCleaning obj\t\033[0;32m[OK]\033[0m"
 
 fclean: clean
+	@make fclean -C libft
 	@rm -rf ./obj $(NAME)
 	@echo "\033[1;34mft_printf\t\033[1;33mCleaning lib\t\033[0;32m[OK]\033[0m"
 

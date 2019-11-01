@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_2.c                                          :+:      :+:    :+:   */
+/*   ft_flags_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/31 16:06:37 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/31 16:08:53 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/11/01 14:48:05 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/11/01 14:48:07 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/prototype.h"
+#include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
 t_count		ft_flags(va_list aux, t_count cmp, char c, char *s)

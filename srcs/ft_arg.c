@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arg.c                                              :+:      :+:    :+:   */
+/*   ft_arg.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/23 11:49:02 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/10/31 15:06:49 by lmoulin          ###   ########.fr       */
+/*   Created: 2019/11/01 14:47:30 by lmoulin           #+#    #+#             */
+/*   Updated: 2019/11/01 14:47:33 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/prototype.h"
+#include "../includes/ft_printf.h"
 #include "../libft/libft.h"
 
 t_count		ft_arg_int(va_list aux, t_count cmp)
