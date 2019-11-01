@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:47:30 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/11/01 14:47:33 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:10:29 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_count		ft_arg_char(va_list aux, t_count cmp)
 	unsigned char	c;
 
 	c = va_arg(aux, int);
+	cmp.len = (c == 0) ? cmp.len + 1 : cmp.len;
 	if ((cmp.str = malloc(sizeof(char) * 2)))
 	{
 		cmp.str[0] = c;

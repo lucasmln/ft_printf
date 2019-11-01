@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:48:15 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/11/01 14:48:22 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:30:36 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_count			ft_print_front_flag(t_count cmp, int neg, char *s)
 	if (s[cmp.i] != 's' || (s[cmp.i] == 's' && cmp.check == 1))
 		while (cmp.zero-- > 0)
 			write(1, "0", 1);
+	ft_putstr_fd(cmp.str, 1);
 	return (cmp);
 }
 
@@ -46,8 +47,9 @@ t_count			ft_print_arg(t_count cmp, char *s)
 	const long			umax = -4294967295;
 
 	cmp = (s[cmp.i] == 's') ? ft_reduc_str(cmp, s) : ft_check_null_str(cmp, s);
+	cmp.zero = (s[cmp.i] == 'c' && cmp.check == 2) ? 0 : cmp.zero;
 	cmp.zero = (cmp.str[0] == '-' && (size_t)cmp.zero >= ft_strlen(cmp.str) &&
-				cmp.check == 2) ? cmp.zero + 1 : cmp.zero;
+				(cmp.check == 2 || cmp.check == 3)) ? cmp.zero + 1 : cmp.zero;
 	cmp.zero = (s[cmp.i] == 's' && cmp.check == 2 && cmp.zero == 0) ? cmp.zero
 			: cmp.zero - ft_strlen(cmp.str);
 	cmp.zero = (cmp.zero < 0) ? 0 : cmp.zero;
@@ -60,12 +62,11 @@ t_count			ft_print_arg(t_count cmp, char *s)
 				cmp.space;
 	cmp.space = cmp.space - ft_strlen(cmp.str) - cmp.zero;
 	cmp.space = (cmp.space > 0) ? cmp.space : 0;
+	cmp.space = (s[cmp.i] == 's' && cmp.str[0] == '\0' && cmp.check == 3) ? 0
+				: cmp.space;
 	cmp.len = cmp.len + ft_strlen(cmp.str) + cmp.space + cmp.zero;
-	cmp.len = (s[cmp.i] == 's' && cmp.check == 2) ? cmp.len - 1 : cmp.len;
 	cmp = ft_print_front_flag(cmp, neg, s);
-	ft_putstr_fd(cmp.str, 1);
 	cmp = ft_print_back_flag(cmp, neg);
-	cmp = ft_init_count(cmp, 1);
 	return (cmp);
 }
 
@@ -88,12 +89,10 @@ t_count			ft_check(va_list aux, const char *s, t_count cmp)
 		cmp = ft_arg_percent(aux, cmp);
 	if (cmp.str != NULL)
 		cmp.i++;
-	if (cmp.str == NULL)
-	{
-		cmp.i = save;
+	if ((cmp.i = (cmp.str == NULL) ? save : cmp.i) == save)
 		return (cmp);
-	}
 	cmp = ft_print_arg(cmp, (char*)s);
+	cmp = ft_init_count(cmp, 1);
 	cmp.str = NULL;
 	return (cmp);
 }

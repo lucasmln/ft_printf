@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:47:57 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/11/01 14:47:59 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/11/01 16:13:30 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_count		ft_flag_point(va_list aux, t_count cmp, const char *s)
 	int		k;
 
 	k = cmp.i + 2;
-	cmp.check = 2;
+	cmp.check = (s[cmp.i] == '-') ? 3 : 2;
 	cmp.i++;
 	cmp = (s[k] == '.' && s[k - 1] == '0') ? ft_flag_point(aux, cmp, s) : cmp;
 	if (s[k] == '*')
