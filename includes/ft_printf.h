@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 12:29:24 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/11/01 14:49:03 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:45:19 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_count
 int				ft_strlen_nb(long nb, int base);
 t_count			ft_init_count(t_count init, int k);
 int				ft_convertible(char c);
+void			ft_strdel(char **s);
 /*
  **arg.c
 */

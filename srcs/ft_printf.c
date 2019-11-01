@@ -6,7 +6,7 @@
 /*   By: lmoulin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/01 14:48:15 by lmoulin           #+#    #+#             */
-/*   Updated: 2019/11/01 16:30:36 by lmoulin          ###   ########.fr       */
+/*   Updated: 2019/11/01 17:46:08 by lmoulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_count			ft_check(va_list aux, const char *s, t_count cmp)
 		return (cmp);
 	cmp = ft_print_arg(cmp, (char*)s);
 	cmp = ft_init_count(cmp, 1);
-	cmp.str = NULL;
+	ft_strdel(&cmp.str);
 	return (cmp);
 }
 
@@ -121,7 +121,6 @@ int				ft_printf(const char *str, ...)
 		}
 		cmp.i++;
 	}
-	free(cmp.str);
 	va_end(aux);
 	return (cmp.len);
 }
